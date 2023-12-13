@@ -99,6 +99,12 @@ public class AccountsController : ControllerBase
 
                 var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.UserName) };
 
+                claims.AddRange(
+                    (await _userManager.GetRolesAsync(user)).Select(
+                        r => new Claim(ClaimTypes.Role, r)
+                    )
+                );
+
                 var jwtObject = new JwtSecurityToken(
                     issuer: _configuration["Jwt:Issuer"],
                     audience: _configuration["Jwt:Audience"],

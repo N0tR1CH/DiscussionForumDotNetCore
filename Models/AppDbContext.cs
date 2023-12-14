@@ -8,5 +8,11 @@ public class AppDbContext : IdentityDbContext<ApiUser>
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options) { }
 
-    public DbSet<Recipe> Recipes { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+    }
+
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Forum> Forums { get; set; }
 }

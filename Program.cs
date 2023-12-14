@@ -1,4 +1,5 @@
 using System.Security.Cryptography.Xml;
+using DiscussionForum.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

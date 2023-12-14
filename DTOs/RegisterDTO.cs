@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+namespace DiscussionForum.DTOs;
+
 public class RegisterDTO
 {
     [Required]

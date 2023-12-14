@@ -113,6 +113,7 @@ public class AccountsController : ControllerBase
                     signingCredentials: signingCredentials
                 );
 
+                // Jwt token as string
                 var jwtString = new JwtSecurityTokenHandler().WriteToken(jwtObject);
 
                 return StatusCode(StatusCodes.Status200OK, jwtString);

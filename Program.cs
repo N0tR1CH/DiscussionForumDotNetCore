@@ -66,6 +66,19 @@ builder
 // Controllers for web API
 builder.Services.AddControllers();
 
+// Cors
+builder
+    .Services
+    .AddCors(options =>
+    {
+        options.AddDefaultPolicy(cfg =>
+        {
+            cfg.WithOrigins(builder.Configuration["AllowedOrigins"]);
+            cfg.AllowAnyHeader();
+            cfg.AllowAnyMethod();
+        });
+    });
+
 // Required for Swagger/OpenAPI specification document
 builder.Services.AddEndpointsApiExplorer();
 builder
@@ -114,6 +127,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthentication();
 app.UseAuthorization();

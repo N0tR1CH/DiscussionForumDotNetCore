@@ -6,8 +6,8 @@ namespace DiscussionForum.Repositories;
 public class RepositoryWrapper : IRepositoryWrapper
 {
     private AppDbContext _context;
-    private ICategoryRepository _category;
-    private IForumRepository _forum;
+    private ICategoryRepository? _category;
+    private IForumRepository? _forum;
 
     public RepositoryWrapper(AppDbContext context)
     {

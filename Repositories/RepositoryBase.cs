@@ -20,7 +20,7 @@ public abstract class RepositoryBase<T> : IRepositoryBase<T>
     public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression) =>
         AppDbContext.Set<T>().Where(expression).AsNoTracking();
 
-    public void Create(T entity) => AppDbContext.Set<T>().Add(entity);
+    public Task CreateAsync(T entity) => AppDbContext.Set<T>().AddAsync(entity).AsTask();
 
     public void Update(T entity) => AppDbContext.Set<T>().Update(entity);
 

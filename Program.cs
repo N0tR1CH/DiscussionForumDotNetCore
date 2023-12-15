@@ -1,4 +1,5 @@
 using System.Security.Cryptography.Xml;
+using DiscussionForum.Extensions;
 using DiscussionForum.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,8 @@ builder
     {
         options.UseNpgsql(connectionString);
     });
+
+builder.Services.ConfigureRepositoryWrapper();
 
 // Identity service
 builder

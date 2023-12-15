@@ -11,6 +11,9 @@ public class AppDbContext : IdentityDbContext<ApiUser>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Category entity
+        modelBuilder.Entity<Category>().HasIndex(c => c.Name).IsUnique();
     }
 
     public DbSet<Category> Categories { get; set; }

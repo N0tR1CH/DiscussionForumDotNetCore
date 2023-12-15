@@ -23,7 +23,7 @@ public class CategoriesController : ControllerBase
     }
 
     [HttpPost(Name = "CreateCategory")]
-    public async Task<ActionResult<RestDTO<Category?>>> Post(CategoryDTO input)
+    public async Task<IActionResult> Create(CategoryDTO input)
     {
         // Check model state
         if (!ModelState.IsValid)
@@ -62,17 +62,19 @@ public class CategoriesController : ControllerBase
         }
 
         // Return new category
-        var url = Url.Action("Post", "Categories", new { id = newCategory.Id }, Request.Scheme);
+        var url = Url.Action("Get", "Categories", new { id = newCategory.Id }, Request.Scheme);
 
         if (url == null)
         {
             return BadRequest("Could not generate URL.");
         }
 
-        return new RestDTO<Category?>
+        var response = new RestDTO<Category?>
         {
             Data = newCategory,
-            Links = new List<LinkDTO> { new LinkDTO(url, "self", "POST") }
+            Links = new List<LinkDTO> { new LinkDTO(url, "self", "GET") }
         };
+
+        return Created(url, response);
     }
 }

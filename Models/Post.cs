@@ -30,5 +30,6 @@ namespace DiscussionForum.Models
         public ICollection<Forum>? Forums { get; set; }
 
         public ICollection<Photo>? Photos { get; set; }
+        public int ViewsCount { get; set; }
     }
 }
